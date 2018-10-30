@@ -1,0 +1,32 @@
+{
+    "name": "northwestern-sysdev/event-hub-php-sdk",
+    "description": "PHP SDK for the Northwestern EventHub",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "northwestern",
+        "northwestern university"
+    ],
+    "authors": [
+        {
+            "name": "Nicholas Evans",
+            "email": "nick.evans@northwestern.edu"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Northwestern\\SysDev\\SOA\\EventHub\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Northwestern\\SysDev\\SOA\\EventHub\\Tests\\": "tests/"
+        }
+    }
+}
