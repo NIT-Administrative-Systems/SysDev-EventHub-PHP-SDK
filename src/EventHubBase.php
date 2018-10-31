@@ -20,9 +20,9 @@ abstract class EventHubBase
     /**
      * Set up API class
      *
-     * @param string           $base_url Base URL for Apigee, e.g. https://northwestern-dev.apigee.net
-     * @param string           $api_key Apigeee API key
-     * @param GuzzleHttpClient $client  A new GuzzleHttp\Client() is suitable, but you can customize it w/ failure retry middleware or what-have-you.
+     * @param string            $base_url Base URL for Apigee, e.g. https://northwestern-dev.apigee.net
+     * @param string            $api_key Apigeee API key
+     * @param GuzzleHttp\Client $client  A new GuzzleHttp\Client() is suitable, but you can customize it w/ failure retry middleware or what-have-you.
      */
     public function __construct(string $base_url, string $api_key, GuzzleHttp\Client $client)
     {
@@ -73,7 +73,7 @@ abstract class EventHubBase
                     return new DeliveredMessage($response->getHeader('X-message-id')[0], $response_content);
                 }
 
-                return json_decode($response_content, JSON_OBJECT_AS_ARRAY);
+                return json_decode($response_content, true);
             }
 
             // If there is no body, see if we have a message ID header.

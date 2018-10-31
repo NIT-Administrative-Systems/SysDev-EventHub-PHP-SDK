@@ -12,7 +12,7 @@ class DeliveredMessage
     {
         $this->id = $id;
         $this->raw_message = $message;
-        $this->deserialized_message = json_decode($message, JSON_OBJECT_AS_ARRAY);
+        $this->deserialized_message = json_decode($message, true);
     } // end __construct
 
     public function getId(): string

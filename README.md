@@ -96,4 +96,4 @@ If you need to include a local copy of the package for development purposes, adj
 }
 ```
 
-You can test the package by running `phpunit`.
+You can test the package by running `phpunit && ./vendor/bin/phpstan analyse --level 5 src/`.
