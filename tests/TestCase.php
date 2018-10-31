@@ -19,7 +19,9 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->api = new $this->test_class('https://northwestern.edu', bin2hex(random_bytes(18)), new Client);
+        if ($this->test_class !== null) {
+            $this->api = new $this->test_class('https://northwestern.edu', bin2hex(random_bytes(18)), new Client);
+        }
     } // end setUp
 
     protected function mockHttpResponse($status_code, $body, $headers = [])

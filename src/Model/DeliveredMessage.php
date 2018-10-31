@@ -20,7 +20,7 @@ class DeliveredMessage
         return $this->id;
     } // end getMessageId
 
-    public function getMessage(): array
+    public function getMessage(): ?array
     {
         return $this->deserialized_message;
     } // end getMessage
