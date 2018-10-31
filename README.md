@@ -96,13 +96,25 @@ $webhook_api->delete($topic_name);
 ```
 
 ## FAQs
-**Why do I have to pass in a GuzzleHttp Client?** I've split this package off from a [Laravel-specific one](https://github.com/NIT-Administrative-Systems/SysDev-laravel-soa), and having Guzzle in the constructor makes it easy for me to let Laravel's service container inject the dependency.
+### Why do I have to pass in a GuzzleHttp Client?
+I've split this package off from a [Laravel-specific one](https://github.com/NIT-Administrative-Systems/SysDev-laravel-soa), and having Guzzle in the constructor makes it easy for me to let Laravel's service container inject the dependency.
 
-Guzzle supports some cool middleware stuff (e.g. automatic re-try logic), which you may want to set up before giving it to the EventHub SDK.
+Guzzle supports some [cool middleware stuff](http://docs.guzzlephp.org/en/stable/handlers-and-middleware.html), which you may want to set up before giving it to the EventHub SDK.
 
-**Do you have more documentation?** Not really. There are PHP docblocks in the code, but they just refer you back to the main EventHub API documentation. This SDK is just a little adapter layer to make using EventHub feel more PHP-y.
+In fact, this package comes with a re-try middleware for temporary network errors. You can do this instead to get a Guzzle Client that will make three immediate re-try attempts if it's unable to establish a connection to EventHub:
 
-**I need help!** The I&A team is the primary contact for EventHub -- I'm an end-user too!
+```php
+$client = \Northwestern\SysDev\SOA\EventHub\Guzzle\RetryClient::make();
+$api = new \Northwestern\SysDev\SOA\EventHub\Webhook('https://northwestern-dev.apigee.net', 'my api key', $client);
+```
+
+This won't auto-retry anything that gets an HTTP error code, e.g. `401 Unauthorized` won't trigger a re-try attempt. Feel free to extend the class & adjust `createRetryHandler()` to better suit your needs.
+
+### Do you have more documentation?
+Not really. There are PHP docblocks in the code, but they just refer you back to the main EventHub API documentation. This SDK is just a little adapter layer to make using EventHub feel more PHP-y.
+
+### I need help!
+The I&A team is the primary contact for EventHub -- I'm an end-user too!
 
 But, if you have questions specifically abou the PHP SDK, you can ask in `#et-sysdev` on the NIT Slack or email nick.evans@northwestern.edu.
 
