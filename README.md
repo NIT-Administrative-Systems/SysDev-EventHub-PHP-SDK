@@ -63,7 +63,9 @@ $message_id = $eh->writeMessage($topic_name, $my_message, 'application/xml');
 ```
 
 ### Managing Webhooks
-EventHub can be configured to deliver messages destined for your application via HTTP POSTs to an API endpoint you've created. This is a self-service feature you can configure yourself:
+EventHub can be configured to deliver messages destined for your application via HTTP POSTs to an API endpoint you've created via webhooks. This is a self-service feature you can configure yourself.
+
+For full details on how this works & the config options, see the [EventHub Webhook documentation](https://apiserviceregistry.northwestern.edu/AMQ/Webhooks).
 
 ```php
 $webhook_api = new \Northwestern\SysDev\SOA\EventHub\Webhook('https://northwestern-dev.apigee.net', 'my api key', new GuzzleHttp\Client);
