@@ -62,6 +62,37 @@ $my_message = '<?xml version="1.0" encoding="UTF-8"?><banana><fact>The banana is
 $message_id = $eh->writeMessage($topic_name, $my_message, 'application/xml');
 ```
 
+### Managing Webhooks
+EventHub can be configured to deliver messages destined for your application via HTTP POSTs to an API endpoint you've created. This is a self-service feature you can configure yourself:
+
+```php
+$webhook_api = new \Northwestern\SysDev\SOA\EventHub\Webhook('https://northwestern-dev.apigee.net', 'my api key', new GuzzleHttp\Client);
+$topic_name = 'etsysdev.test.queue.name';
+
+// Create a paused webhook
+$details = $webhook_api->create($topic_name, [
+    'topicName' => $topic_name,
+    'endpoint' => 'https://my-app-dev.northwestern.edu/api/webhook/receive', // the URL in your application
+    'contentType' => 'application/json', // desired format for delivered messages
+    'active' => false, // start off paused, so no deliveries are made to your app
+    'securityTypes' => ['NONE'], // what authentication method(s) need to be done to authenticate w/ your endpoint -- see the webhook documentation for more info
+    'webhookSecurity' => [
+        ['securityType' => 'NONE']
+    ]
+]);
+
+// When you're ready, turn the webhook on:
+$details = $webhook_api->unpause($topic_name);
+
+// You can adjust any of your settings whenever you need to -- see the EventHub docs for more info
+$details = $webhook_api->updateConfig($topic_name, [
+    'endpoint' => 'https://my-app-dev.northwestern.edu/api/v2/webhooks',
+]);
+
+// Or remove the webhook entirely & go back to polling the queue
+$webhook_api->delete($topic_name);
+```
+
 ## FAQs
 **Why do I have to pass in a GuzzleHttp Client?** I've split this package off from a [Laravel-specific one](https://github.com/NIT-Administrative-Systems/SysDev-laravel-soa), and having Guzzle in the constructor makes it easy for me to let Laravel's service container inject the dependency.
 
