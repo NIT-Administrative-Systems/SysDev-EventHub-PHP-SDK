@@ -4,7 +4,7 @@ This is a set of PHP classes design to give you easy access to the new Northwest
 As of writing, this PHP SDK implements methods for all EventHub API calls.
 
 ## Installation
-This package is [not yet actually] available via composer:
+This package is available via composer:
 
 ```sh
 $ composer require northwestern-sysdev/event-hub-php-sdk
