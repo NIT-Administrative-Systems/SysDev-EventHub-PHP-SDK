@@ -15,7 +15,7 @@ class DeadLetterQueue extends EventHubBase
     {
         $params = ($duration === null ? [] : ['duration' => $duration]);
 
-        return $this->call('get', vsprintf('/v1/event-hub/queue/%s/dlq', [$topic_name]), $params);
+        return $this->call('get', vsprintf('/v1/event-hub/dlq/%s', [$topic_name]), $params);
     } // end getInfo
 
     /**
@@ -25,15 +25,9 @@ class DeadLetterQueue extends EventHubBase
      * @param  string $message_id             ID of the message you are moving to the DLQ
      * @see https://apiserviceregistry.northwestern.edu/#/DLQ/moveMessage2
      */
-    public function moveToDLQ(string $destination_topic_name, string $message_id): bool
+    public function moveToDLQ(string $source_topic_name,  string $message_id, string $destination_topic_name): bool
     {
-        /*
-        * @TODO - Brent is looking at why this is 404ing
-        *
-        * Brent: This was how I was calling it, 
-        *   https://northwestern-{{env}}.apigee.net/v1/event-hub/dlq/BAB/message/ID:b137ad914b75-44883-1540240224517-1:21:1:1:1/QUEUE/BAB
-        */
-        return $this->call('post', vsprintf('/v1/event-hub/queue/%s/message/%s/dlq', [$destination_topic_name, $message_id]));
+        return $this->call('post', vsprintf('/v1/event-hub/queue/%s/message/%s/dlq/%s', [$source_topic_name, $message_id, $destination_topic_name]));
     } // end moveToDLQ
 
 } // end DeadLetterQueue

@@ -27,7 +27,7 @@ class DeadLetterQueue extends TestCase
     {
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
 
-        $status = $this->api->moveToDLQ('etsysdev.test.queue.name', 'ID:1234:baz');
+        $status = $this->api->moveToDLQ('etsysdev.test.queue.name', 'ID:1234:baz', 'etsysdev.test.queue.name');
         $this->assertTrue($status);
     } // end test_move_to_dlq
 
