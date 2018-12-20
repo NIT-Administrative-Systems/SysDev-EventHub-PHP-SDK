@@ -31,4 +31,35 @@ class DeadLetterQueue extends TestCase
         $this->assertTrue($status);
     } // end test_move_to_dlq
 
+    public function test_read_oldest()
+    {
+        $response_id = 'ID:12345:baz';
+        $response_body = ['cool' => 'message'];
+
+        // Without autoAck arg
+        $this->api->setHttpClient($this->mockHttpResponse(200, json_encode($response_body), ['X-message-id' => $response_id]));
+        $message = $this->api->readOldest('etsysdev.test.queue.name');
+        $this->assertEquals($response_id, $message->getId());
+        $this->assertEquals($response_body, $message->getMessage());
+
+        // With autoAck arg
+        $this->api->setHttpClient($this->mockHttpResponse(200, json_encode($response_body), ['X-message-id' => $response_id]));
+        $message = $this->api->readOldest('etsysdev.test.queue.name', true);
+        $this->assertEquals($response_id, $message->getId());
+        $this->assertEquals($response_body, $message->getMessage());
+
+        // Nothing in queue
+        $this->api->setHttpClient($this->mockHttpResponse(204, null));
+        $message = $this->api->readOldest('etsysdev.test.queue.name');
+        $this->assertNull($message);
+    } // end test_read_oldest
+
+    public function test_move_from_dlq()
+    {
+        $this->api->setHttpClient($this->mockHttpResponse(204, null));
+
+        $status = $this->api->moveFromDLQ('etsysdev.test.queue.name', 'ID:1234:baz', 'etsysdev.test.queue.name');
+        $this->assertTrue($status);
+    } // end test_move_from_dlq
+
 } // end DeadLetterQueue
