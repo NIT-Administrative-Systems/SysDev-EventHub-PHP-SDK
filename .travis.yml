@@ -1,0 +1,31 @@
+language: php
+
+cache:
+  directories:
+    - "$HOME/.composer/cache"
+    - vendor
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+
+before_install:
+  - travis_retry composer self-update
+
+install:
+  - travis_retry composer install --dev --no-interaction
+  - composer show
+
+script:
+  - php vendor/bin/phpunit --coverage-clover build/coverage/xml
+
+after_script:
+  - travis_retry php vendor/bin/codacycoverage clover build/coverage/xml
+
+notifications:
+  webhooks: "$TEAMS_NOTIFY_WEBHOOK"
+
+env:
+  global:
+    secure: Mf/Cve7RazfJgbbN4F6hF5ZQPYO0P77qACuZ4xge9UsXNeyzLRRqQbxelh1uNrxLZTgIqIhI5Eibg9uxhu30ejvzelSlrDRC4wY2oCY+6SiGwOp9IgBsIgKikxetZUngyhfbA+Q4mjiP2sls1dtsxD9AA6++w4T7XXSq9mp6jVd2ZNVGdEMlmDn9put6GtQHAuy8v2Xg1dXjGmoxtYDDbjVTxA8giiKJT1HOJwvExTREcVAJhzYs8mj93Q6bnYzkcv1IU0FHfSmcexB3mCVqjE6KlpdtQtCbvVN+NliHeA35p3xtnTdJtNNsbw2NAmrdw4jXWbWX8lV8HcI6QWipD0aXfTtqzZzDJbQy2Wj7slV7a/BqcGFvHxTlnlKHL+OFNRbFts6HAG2GX41OJlEXFeLNeTRIu+IQ53r6GFqWZjvdGwQ6YKloVjsEuBCQGZx2jjjYaTXmqqVv7yZ/Ge5htbSFmG9jq7DWfK+3ph3WQs4ljrEs0ZbFeEPUj621dwmIFik/mWh9xVwN6jIaR78hbY8+f6I4EQNSa3HTWoq2HYF0BC2gSygzJ2yixQKs3IqvIFUTvixge+txOAVX4Iy6Ux/x3T2mUmXd1zCl2VxrMe8JD0qsxrmsOAWQzGtpnQfpNMt9GINO7JlFrjUJD11r2hBWAahGPxjsbUL5BoA0Sl4=
