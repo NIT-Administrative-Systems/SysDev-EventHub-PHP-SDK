@@ -1,4 +1,4 @@
-# EventHub PHP SDK
+# EventHub PHP SDK [![Build Status](https://travis-ci.org/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK.svg?branch=master)](https://travis-ci.org/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK) [![Latest Stable Version](https://poser.pugx.org/northwestern-sysdev/event-hub-php-sdk/v/stable)](https://packagist.org/packages/northwestern-sysdev/event-hub-php-sdk) [![Total Downloads](https://poser.pugx.org/northwestern-sysdev/event-hub-php-sdk/downloads)](https://packagist.org/packages/northwestern-sysdev/event-hub-php-sdk)
 This is a set of PHP classes design to give you easy access to the new Northwestern EventHub & AMQ.
 
 As of writing, this PHP SDK implements methods for all EventHub API calls.
