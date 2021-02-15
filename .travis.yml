@@ -6,9 +6,8 @@ cache:
     - vendor
 
 php:
-  - 7.1
-  - 7.2
-  - 7.3
+  - 7.4
+  - 8.0
 
 before_install:
   - travis_retry composer self-update
@@ -18,13 +17,3 @@ install:
 
 script:
   - php vendor/bin/phpunit --coverage-clover build/coverage/xml
-
-after_script:
-  - travis_retry php vendor/bin/codacycoverage clover build/coverage/xml
-
-notifications:
-  webhooks: https://outlook.office.com/webhook/e58555a4-17f9-414e-8eaf-94a34bb95c6b@7d76d361-8277-4708-a477-64e8366cd1bc/TravisCI/3d3ef45ccbd74c3c93769fbe0f5ba555/15e93fd1-b1be-48b6-8cfe-ab4e35fd33a2
-
-env:
-  global:
-    - secure: "HZV90INwmglxHL0+rEwhCO7bZPEMWfzwy1G6p/sLI2THcXuiEK++zFEec15/Mxz4F1OMAli9Jf7v3g9xlnkuZNrx4qjW/IiWlET0MAa5M5e/15VN5RRfHUxAjoh04yHu7P2MBDsBslsLVYeumXXZKqx0RotRH8Wwmfg4cElSMHG3+E4awX7nbVgm/U9WE+h8q/LrkIIkGUCFOFXAGDu07r+sY/4JdbiUqzdGGmjV3dQl6gOUIVypCtd1x0Y9sMVkgtKL8EQZPPje7n061J6D0Pmnv1KOKtatyzdigGXhuKacZlmj46gzSb1d4zSkBC7H3Vk5tHwlOV494UMoTg4gZcPlXOD9gtuOHdjHI9VfEMGlLt1a/MtBhyjnsOjoc4QgRNiugVjbhE+Am1Tly4FLGqXCMls/pGWUh3wl4J885JadGW1J7H+tiYLFOL4ikJXm/SQKG3CVmRYa3/KqGtxDMvdo/x0A+HWmaaXeFzl55i0yrgRQDtV52UzZCkLFf0hzCc9xdlGtwR8xEZ94cQhONsnIwIXXRThhqJxwLyY9IEZbvLHakPB8gUJvbsfDYvWz57djwM2Dngkd4sxGaDhCcYaV4cR8yQVdB2RFKUGNweOOt3LHaxMzF8Qi3UmOcFdcGcyvy9ZlZsHdinVD6EgrNvMDXCoaRMHk9lWAitRc87c="

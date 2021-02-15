@@ -10,7 +10,7 @@ This package is available via composer:
 $ composer require northwestern-sysdev/event-hub-php-sdk
 ```
 
-You will need to contact ET-I&A in order to set up your access to EventHub.
+The latest version of this package supports PHP v7.4+. It may not work on older versions of PHP. Please use v1 if you require compatability with older versions!
 
 ## Examples
 Here are some quick examples for using this SDK. For more information about EventHub & its capabilities, please see the documentation on the [Service Registry](https://apiserviceregistry.northwestern.edu/AMQ-Dashboard).
