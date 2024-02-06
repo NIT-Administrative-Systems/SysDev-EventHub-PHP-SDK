@@ -69,5 +69,4 @@ final class Message extends SdkBaseTestCase
         $status = $this->api->move('etsysdev.test.queue.name', 'ID:foobar:baz', 'TOPIC', 'etsysdev.test.queue.name');
         $this->assertTrue($status);
     }
-
 }

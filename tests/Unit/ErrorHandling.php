@@ -14,7 +14,7 @@ final class ErrorHandling extends SdkBaseTestCase
         $this->expectException(\Northwestern\SysDev\SOA\EventHub\Exception\EventHubDown::class);
 
         $this->api->setHttpClient($this->mockNetworkConnectivityError());
-        
+
         $this->api->listAll();
     }
 
@@ -24,7 +24,7 @@ final class ErrorHandling extends SdkBaseTestCase
         $this->expectExceptionCode(500);
 
         $this->api->setHttpClient($this->mockHttpResponse(500, json_encode(['errorCode' => 500, 'errorMessage' => 'Not Authorized'])));
-        
+
         $this->api->listAll();
     }
 }

@@ -5,7 +5,9 @@ namespace Northwestern\SysDev\SOA\EventHub\Model;
 class DeliveredMessage
 {
     protected string $id;
+
     protected ?array $deserialized_message;
+
     protected string $raw_message;
 
     public function __construct(string $id, string $message)

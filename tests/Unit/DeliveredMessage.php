@@ -2,8 +2,8 @@
 
 namespace Northwestern\SysDev\SOA\EventHub\Tests\Unit;
 
-use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
-use Northwestern\SysDev\SOA\EventHub\Model\DeliveredMessage as DeliveredMessageModel; // same name as the class, needs an alias to work
+use Northwestern\SysDev\SOA\EventHub\Model\DeliveredMessage as DeliveredMessageModel;
+use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase; // same name as the class, needs an alias to work
 
 final class DeliveredMessage extends SdkBaseTestCase
 {

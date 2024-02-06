@@ -3,11 +3,11 @@
 namespace Northwestern\SysDev\SOA\EventHub\Tests;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use Northwestern\SysDev\SOA\EventHub\EventHubBase;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

@@ -17,7 +17,8 @@ class Webhook extends EventHubBase
     /**
      * Retrieve information about a webhook
      *
-     * @param  string $topic_name The topic name
+     * @param  string  $topic_name  The topic name
+     *
      * @see https://apiserviceregistry.northwestern.edu/#/webhook/getWebhookInfo
      */
     public function getInfo(string $topic_name): array
@@ -28,7 +29,8 @@ class Webhook extends EventHubBase
     /**
      * Deletes a webhook
      *
-     * @param  string $topic_name The topic name
+     * @param  string  $topic_name  The topic name
+     *
      * @see https://apiserviceregistry.northwestern.edu/#/webhook/deleteWebhook
      */
     public function delete(string $topic_name): bool
@@ -39,8 +41,9 @@ class Webhook extends EventHubBase
     /**
      * Register a new webhook
      *
-     * @param  string $topic_name The topic name
-     * @param  array  $config     Settings for your new webhook
+     * @param  string  $topic_name  The topic name
+     * @param  array  $config  Settings for your new webhook
+     *
      * @see https://apiserviceregistry.northwestern.edu/#/webhook/registerWebhook
      */
     public function create(string $topic_name, array $config): bool
@@ -51,8 +54,9 @@ class Webhook extends EventHubBase
     /**
      * Update Webhook information
      *
-     * @param  string $topic_name The topic name
-     * @param  array  $config     Some settings to change on your webhook
+     * @param  string  $topic_name  The topic name
+     * @param  array  $config  Some settings to change on your webhook
+     *
      * @see https://apiserviceregistry.northwestern.edu/#/webhook/updateWebhookDefaults
      */
     public function updateConfig(string $topic_name, array $config): array
@@ -63,7 +67,8 @@ class Webhook extends EventHubBase
     /**
      * Sends an update w/ active = false to pause the webhook.
      *
-     * @param  string $topic_name The topic name
+     * @param  string  $topic_name  The topic name
+     *
      * @see https://apiserviceregistry.northwestern.edu/#/webhook/updateWebhookDefaults
      */
     public function pause(string $topic_name): array
@@ -74,7 +79,8 @@ class Webhook extends EventHubBase
     /**
      * Sends an update w/ active = true to un-pause the webhook.
      *
-     * @param  string $topic_name The topic name
+     * @param  string  $topic_name  The topic name
+     *
      * @see https://apiserviceregistry.northwestern.edu/#/webhook/updateWebhookDefaults
      */
     public function unpause(string $topic_name): array

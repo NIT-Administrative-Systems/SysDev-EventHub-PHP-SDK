@@ -3,27 +3,33 @@
 namespace Northwestern\SysDev\SOA\EventHub;
 
 use GuzzleHttp;
-use Northwestern\SysDev\SOA\EventHub\Exception;
 use Northwestern\SysDev\SOA\EventHub\Model\DeliveredMessage;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class EventHubBase
 {
     protected string $base_url;
+
     protected string $api_key;
+
     protected ?string $last_req_url = null;
+
     protected ?string $last_req_method = null;
+
     protected ?string $last_req_body = null;
+
     protected ?string $last_req_error = null;
+
     protected ?string $last_req_response_code = null;
+
     protected GuzzleHttp\Client $http_client;
 
     /**
      * Set up API class
      *
-     * @param string            $base_url Base URL for Apigee, e.g. https://northwestern-dev.apigee.net
-     * @param string            $api_key Apigeee API key
-     * @param GuzzleHttp\Client $client  A new GuzzleHttp\Client() is suitable, but you can customize it w/ failure retry middleware or what-have-you.
+     * @param  string  $base_url  Base URL for Apigee, e.g. https://northwestern-dev.apigee.net
+     * @param  string  $api_key  Apigeee API key
+     * @param  GuzzleHttp\Client  $client  A new GuzzleHttp\Client() is suitable, but you can customize it w/ failure retry middleware or what-have-you.
      */
     public function __construct(string $base_url, string $api_key, GuzzleHttp\Client $client)
     {
@@ -93,12 +99,11 @@ abstract class EventHubBase
     /**
      * [stringifyBool description]
      *
-     * @param  bool   $flag
      * @return string The string "true" or "false", which is what the Event Hub seems to prefer in query parameters
      */
     protected function stringifyBool(bool $flag): string
     {
-        return $flag === true ? "true" : "false";
+        return $flag === true ? 'true' : 'false';
     }
 
     private function makeRequestUrl(string $url, array $query_params): string
@@ -110,8 +115,8 @@ abstract class EventHubBase
             $prepared_params[] = vsprintf('%s=%s', [urlencode($key), urlencode($value)]);
         }
 
-        if (sizeof($prepared_params) > 0) {
-            $url = $url . "?" . implode('&', $prepared_params);
+        if (count($prepared_params) > 0) {
+            $url = $url.'?'.implode('&', $prepared_params);
         }
 
         return $url;
@@ -127,6 +132,7 @@ abstract class EventHubBase
         }
 
         $msg_id_header = $response->getHeader('X-message-id');
+
         return $msg_id_header[0];
     }
 
