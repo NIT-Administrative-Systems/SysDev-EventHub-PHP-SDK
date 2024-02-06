@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v3.0.0] - 2024-02-06
+This version drops support for older PHPs, adds stricter types internally, and fixes some bugs.
+
 ### Changed
 - Support for PHP 7.4 and 8.0 has been dropped. Please use v2.0.0 if you need to use this with an older version of PHP.
 - Types have been added for all properties, method parameters, and method returns.
