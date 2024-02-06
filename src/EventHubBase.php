@@ -38,7 +38,14 @@ abstract class EventHubBase
         $this->http_client = $client;
     } // end __construct
 
-    protected function call(string $method, string $url, array $url_query_params = [], ?string $body = null, array $headers = []): DeliveredMessage|bool|array|string
+    protected function call(
+        string $method,
+        string $url,
+        array $url_query_params = [],
+        ?string $body = null,
+        array $headers = [],
+        ?string $acceptContentType = 'application/json'
+    ): DeliveredMessage|bool|array|string
     {
         // Great for debugging w/ `print_r($my_event_hub_object)`.
         $this->last_req_url = $this->makeRequestUrl($url, $url_query_params);
@@ -47,11 +54,13 @@ abstract class EventHubBase
         $this->last_req_response_code = null;
         $this->last_req_body = $body;
 
-        $headers = array_merge([
+        // array_filter removes the Accept header if the caller sets that value to null, which is sometimes desirable
+        // for handling XML messages.
+        $headers = array_merge(array_filter([
             'apikey' => $this->api_key,
-            'Accept' => 'application/json',
+            'Accept' => $acceptContentType,
             'Content-Type' => 'application/json',
-        ], $headers);
+        ]), $headers);
 
         $response = null;
         try {

@@ -34,7 +34,7 @@ class DeadLetterQueue extends EventHubBase
     {
         $params = ($acknowledge === null ? [] : ['acknowledge' => $this->stringifyBool($acknowledge)]);
 
-        $message = $this->call('get', vsprintf('/v1/event-hub/dlq/%s/message', [$topic_name]), $params);
+        $message = $this->call('get', vsprintf('/v1/event-hub/dlq/%s/message', [$topic_name]), $params, acceptContentType: null);
 
         // No messages, yay!
         if ($message === true) {
