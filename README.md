@@ -1,4 +1,4 @@
-# EventHub PHP SDK [![Build Status](https://github.com/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK/workflows/PHPUnit%20Tests/badge.svg)](https://github.com/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK/actions?query=workflow%3A%22PHPUnit+Tests%22) [![Latest Stable Version](https://poser.pugx.org/northwestern-sysdev/event-hub-php-sdk/v/stable)](https://packagist.org/packages/northwestern-sysdev/event-hub-php-sdk) [![Total Downloads](https://poser.pugx.org/northwestern-sysdev/event-hub-php-sdk/downloads)](https://packagist.org/packages/northwestern-sysdev/event-hub-php-sdk) [![Coverage Status](https://coveralls.io/repos/github/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK/badge.svg?branch=master)](https://coveralls.io/github/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK?branch=master)
+# EventHub PHP SDK [![Build Status](https://github.com/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK/workflows/PHPUnit%20Tests/badge.svg)](https://github.com/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK/actions?query=workflow%3A%22PHPUnit+Tests%22) [![Latest Stable Version](https://poser.pugx.org/northwestern-sysdev/event-hub-php-sdk/v/stable)](https://packagist.org/packages/northwestern-sysdev/event-hub-php-sdk) [![Total Downloads](https://poser.pugx.org/northwestern-sysdev/event-hub-php-sdk/downloads)](https://packagist.org/packages/northwestern-sysdev/event-hub-php-sdk) [![Coverage Status](https://coveralls.io/repos/github/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK/badge.svg?branch=main)](https://coveralls.io/github/NIT-Administrative-Systems/SysDev-EventHub-PHP-SDK?branch=main)
 This is a set of PHP classes design to give you easy access to the new Northwestern EventHub & AMQ.
 
 As of writing, this PHP SDK implements methods for all EventHub API calls.
@@ -7,7 +7,7 @@ As of writing, this PHP SDK implements methods for all EventHub API calls.
 This package is available via composer:
 
 ```sh
-$ composer require northwestern-sysdev/event-hub-php-sdk
+composer require northwestern-sysdev/event-hub-php-sdk
 ```
 
 The latest version of this package supports PHP v7.4+. It may not work on older versions of PHP. Please use v1 if you require compatability with older versions!
@@ -65,7 +65,7 @@ $message_id = $eh->writeMessage($topic_name, $my_message, 'application/xml');
 ### Managing Webhooks
 EventHub can be configured to deliver messages destined for your application via HTTP POSTs to an API endpoint you've created via webhooks. This is a self-service feature you can configure yourself.
 
-For full details on how this works & the config options, see the [EventHub Webhook documentation](https://apiserviceregistry.northwestern.edu/AMQ/Webhooks).
+For full details on how this works & the config options, see the [EventHub Webhook documentation](https://apiserviceregistry.northwestern.edu/help/using-webhooks).
 
 ```php
 $webhook_api = new \Northwestern\SysDev\SOA\EventHub\Webhook('https://northwestern-dev.apigee.net', 'my api key', new GuzzleHttp\Client);
