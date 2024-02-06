@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Support for PHP 7.4 and 8.0 has been dropped. Please use v2.0.0 if you need to use this with an older version of PHP.
+- Types have been added for all properties, method parameters, and method returns.
 
 ### Fixed
 - Fixed an exception in the `RetryClient` that prevented it from dealing with `ConnectException`s.
