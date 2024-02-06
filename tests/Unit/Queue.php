@@ -4,7 +4,7 @@ namespace Northwestern\SysDev\SOA\EventHub\Tests\Unit;
 
 use Northwestern\SysDev\SOA\EventHub\Tests\TestCase;
 
-class Queue extends TestCase
+final class Queue extends TestCase
 {
     protected $test_class = \Northwestern\SysDev\SOA\EventHub\Queue::class;
 
