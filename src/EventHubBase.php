@@ -20,7 +20,7 @@ abstract class EventHubBase
 
     protected ?string $last_req_error = null;
 
-    protected ?string $last_req_response_code = null;
+    protected ?int $last_req_response_code = null;
 
     protected GuzzleHttp\Client $http_client;
 
