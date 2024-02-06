@@ -6,7 +6,7 @@ use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
 
 final class Queue extends SdkBaseTestCase
 {
-    protected $test_class = \Northwestern\SysDev\SOA\EventHub\Queue::class;
+    protected ?string $test_class = \Northwestern\SysDev\SOA\EventHub\Queue::class;
 
     public function test_list_all(): void
     {
@@ -21,7 +21,7 @@ final class Queue extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(200, $response));
         $queues = $this->api->listAll();
         $this->assertEquals('etsysdev.test.queue.name', $queues[0]['topicName']);
-    } // end test_list_all
+    }
 
     public function test_get_info(): void
     {
@@ -36,7 +36,7 @@ final class Queue extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(200, $response));
         $queue = $this->api->getInfo('etsysdev.test.queue.name');
         $this->assertEquals('etsysdev.test.queue.name', $queue['topicName']);
-    } // end test_get_info
+    }
 
     public function test_clear_all_messages(): void
     {
@@ -44,7 +44,7 @@ final class Queue extends SdkBaseTestCase
         $status = $this->api->clearAllMessages('etsysdev.test.queue.name');
 
         $this->assertTrue($status);
-    } // end test_clear_all_messages
+    }
 
     public function test_configure(): void
     {
@@ -53,7 +53,7 @@ final class Queue extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(200, $response));
         $queue = $this->api->configure('etsysdev.test.queue.name', []);
         $this->assertEquals('etsysdev.test.queue.name', $queue['topicName']);
-    } // end test_configure
+    }
 
     public function test_send_test_json_message(): void
     {
@@ -62,7 +62,7 @@ final class Queue extends SdkBaseTestCase
 
         $message_id = $this->api->sendTestJsonMessage('etsysdev.test.queue.name', ['testing' => 'messaging', 'is' => 'fun']);
         $this->assertEquals($response_id, $message_id);
-    } // end test_send_test_json_message
+    }
 
     public function test_send_test_message(): void
     {
@@ -71,6 +71,5 @@ final class Queue extends SdkBaseTestCase
 
         $message_id = $this->api->sendTestMessage('etsysdev.test.queue.name', '{"foo": true}', 'application/json');
         $this->assertEquals($response_id, $message_id);
-    } // end test_send_test_message
-
-} // end Queue
+    }
+}

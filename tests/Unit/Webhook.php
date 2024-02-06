@@ -6,7 +6,7 @@ use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
 
 final class Webhook extends SdkBaseTestCase
 {
-    protected $test_class = \Northwestern\SysDev\SOA\EventHub\Webhook::class;
+    protected ?string $test_class = \Northwestern\SysDev\SOA\EventHub\Webhook::class;
 
     public function test_list_all(): void
     {
@@ -15,7 +15,7 @@ final class Webhook extends SdkBaseTestCase
 
         $hooks = $this->api->listAll();
         $this->assertArrayHasKey('webhooks', $hooks);
-    } // end test_list_all
+    }
 
     public function test_get_info(): void
     {
@@ -24,7 +24,7 @@ final class Webhook extends SdkBaseTestCase
 
         $hook = $this->api->getInfo('etsysdev.test.queue.name');
         $this->assertEquals('etsysdev.test.queue.name', $hook['topicName']);
-    } // end test_get_info
+    }
 
     public function test_delete(): void
     {
@@ -32,7 +32,7 @@ final class Webhook extends SdkBaseTestCase
 
         $status = $this->api->delete('etsysdev.test.queue.name');
         $this->assertTrue($status);
-    } // end test_delete
+    }
 
     public function test_create(): void
     {
@@ -40,7 +40,7 @@ final class Webhook extends SdkBaseTestCase
 
         $status = $this->api->create('etsysdev.test.queue.name', ['topicName' => 'etsysdev.test.queue.name', 'endpoint' => 'http://localhost:9080/GenericMQ/test/apikey', 'contentType' => 'application/json', 'active' => false, 'securityTypes' => ['NONE'], 'webhookSecurity' => [['securityType' => 'NONE']]]);
         $this->assertTrue($status);
-    } // end test_create
+    }
 
     public function test_update_config(): void
     {
@@ -49,7 +49,7 @@ final class Webhook extends SdkBaseTestCase
 
         $hook = $this->api->updateConfig('etsysdev.test.queue.name', []);
         $this->assertEquals('etsysdev.test.queue.name', $hook['topicName']);
-    } // end test_update_config
+    }
 
     public function test_pause(): void
     {
@@ -58,7 +58,7 @@ final class Webhook extends SdkBaseTestCase
 
         $hook = $this->api->pause('etsysdev.test.queue.name', []);
         $this->assertEquals('etsysdev.test.queue.name', $hook['topicName']);
-    } // end test_pause
+    }
 
     public function test_unpause(): void
     {
@@ -67,6 +67,5 @@ final class Webhook extends SdkBaseTestCase
 
         $hook = $this->api->unpause('etsysdev.test.queue.name', []);
         $this->assertEquals('etsysdev.test.queue.name', $hook['topicName']);
-    } // end test_unpause
-
-} // end Webhook
+    }
+}

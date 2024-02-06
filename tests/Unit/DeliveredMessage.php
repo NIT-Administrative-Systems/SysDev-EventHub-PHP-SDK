@@ -2,8 +2,8 @@
 
 namespace Northwestern\SysDev\SOA\EventHub\Tests\Unit;
 
-use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
-use Northwestern\SysDev\SOA\EventHub\Model\DeliveredMessage as DeliveredMessageModel; // same name as the class, needs an alias to work
+use Northwestern\SysDev\SOA\EventHub\Model\DeliveredMessage as DeliveredMessageModel;
+use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase; // same name as the class, needs an alias to work
 
 final class DeliveredMessage extends SdkBaseTestCase
 {
@@ -12,7 +12,7 @@ final class DeliveredMessage extends SdkBaseTestCase
         $msg = new DeliveredMessageModel('ID:12345', '{"test": true}');
 
         $this->assertArrayHasKey('test', $msg->getMessage());
-    } // end test_opens_json_message
+    }
 
     public function test_raw_xml_available(): void
     {
@@ -21,7 +21,7 @@ final class DeliveredMessage extends SdkBaseTestCase
 
         $this->assertNull($msg->getMessage());
         $this->assertEquals($xml, $msg->getRawMessage());
-    } // end test_raw_xml_available
+    }
 
     public function test_has_message_id(): void
     {
@@ -29,6 +29,5 @@ final class DeliveredMessage extends SdkBaseTestCase
         $msg = new DeliveredMessageModel($id, '');
 
         $this->assertEquals($id, $msg->getId());
-    } // end test_has_message_id
-
-} // end DeliveredMessage
+    }
+}

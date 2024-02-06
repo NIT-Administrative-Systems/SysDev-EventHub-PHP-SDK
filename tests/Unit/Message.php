@@ -6,7 +6,7 @@ use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
 
 final class Message extends SdkBaseTestCase
 {
-    protected $test_class = \Northwestern\SysDev\SOA\EventHub\Message::class;
+    protected ?string $test_class = \Northwestern\SysDev\SOA\EventHub\Message::class;
 
     public function test_read_oldest(): void
     {
@@ -29,20 +29,20 @@ final class Message extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
         $message = $this->api->readOldest('etsysdev.test.queue.name');
         $this->assertNull($message);
-    } // end test_read_oldest
+    }
 
     public function test_acknowledge_oldest(): void
     {
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
         $status = $this->api->acknowledgeOldest('etsysdev.test.queue.name');
         $this->assertTrue($status);
-    } // end test_acknowledge_oldest
+    }
 
     public function test_read(): void
     {
         // Does not currently work in EventHub
         $this->markTestIncomplete();
-    } // end test_read
+    }
 
     public function test_acknowledge(): void
     {
@@ -55,7 +55,7 @@ final class Message extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
         $status = $this->api->acknowledge('etsysdev.test.queue.name', 'ID:foobar:baz', true);
         $this->assertTrue($status);
-    } // end test_acknowledge
+    }
 
     public function test_move(): void
     {
@@ -68,6 +68,5 @@ final class Message extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
         $status = $this->api->move('etsysdev.test.queue.name', 'ID:foobar:baz', 'TOPIC', 'etsysdev.test.queue.name');
         $this->assertTrue($status);
-    } // end test_move
-
-} // end Message
+    }
+}

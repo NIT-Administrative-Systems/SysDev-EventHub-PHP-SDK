@@ -6,7 +6,7 @@ use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
 
 final class DeadLetterQueue extends SdkBaseTestCase
 {
-    protected $test_class = \Northwestern\SysDev\SOA\EventHub\DeadLetterQueue::class;
+    protected ?string $test_class = \Northwestern\SysDev\SOA\EventHub\DeadLetterQueue::class;
 
     public function test_get_info(): void
     {
@@ -21,7 +21,7 @@ final class DeadLetterQueue extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(200, $response));
         $dlq = $this->api->getInfo('etsysdev.test.queue.name');
         $this->assertEquals('etsysdev.test.queue.name.DLQ', $dlq['name']);
-    } // end test_get_info
+    }
 
     public function test_move_to_dlq(): void
     {
@@ -29,7 +29,7 @@ final class DeadLetterQueue extends SdkBaseTestCase
 
         $status = $this->api->moveToDLQ('etsysdev.test.queue.name', 'ID:1234:baz', 'etsysdev.test.queue.name');
         $this->assertTrue($status);
-    } // end test_move_to_dlq
+    }
 
     public function test_read_oldest(): void
     {
@@ -52,7 +52,7 @@ final class DeadLetterQueue extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
         $message = $this->api->readOldest('etsysdev.test.queue.name');
         $this->assertNull($message);
-    } // end test_read_oldest
+    }
 
     public function test_move_from_dlq(): void
     {
@@ -60,6 +60,5 @@ final class DeadLetterQueue extends SdkBaseTestCase
 
         $status = $this->api->moveFromDLQ('etsysdev.test.queue.name', 'ID:1234:baz', 'etsysdev.test.queue.name');
         $this->assertTrue($status);
-    } // end test_move_from_dlq
-
-} // end DeadLetterQueue
+    }
+}
