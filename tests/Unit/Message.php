@@ -8,7 +8,7 @@ class Message extends TestCase
 {
     protected $test_class = \Northwestern\SysDev\SOA\EventHub\Message::class;
 
-    public function test_read_oldest()
+    public function test_read_oldest(): void
     {
         $response_id = 'ID:12345:baz';
         $response_body = ['cool' => 'message'];
@@ -31,20 +31,20 @@ class Message extends TestCase
         $this->assertNull($message);
     } // end test_read_oldest
 
-    public function test_acknowledge_oldest()
+    public function test_acknowledge_oldest(): void
     {
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
         $status = $this->api->acknowledgeOldest('etsysdev.test.queue.name');
         $this->assertTrue($status);
     } // end test_acknowledge_oldest
 
-    public function test_read()
+    public function test_read(): void
     {
         // Does not currently work in EventHub
         $this->markTestIncomplete();
     } // end test_read
 
-    public function test_acknowledge()
+    public function test_acknowledge(): void
     {
         // With fastForward arg
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
@@ -57,7 +57,7 @@ class Message extends TestCase
         $this->assertTrue($status);
     } // end test_acknowledge
 
-    public function test_move()
+    public function test_move(): void
     {
         // With delay arg
         $this->api->setHttpClient($this->mockHttpResponse(204, null));
