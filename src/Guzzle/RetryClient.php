@@ -45,7 +45,7 @@ class RetryClient
 
     protected function createRetryHandler()
     {
-        return function ($retries, Psr7Request $request, Psr7Response $response = null, RequestException $exception = null) {
+        return function ($retries, Psr7Request $request, Psr7Response $response = null, RequestException|ConnectException $exception = null) {
             if ($retries >= self::MAX_RETRIES) {
                 return false;
             }
@@ -54,7 +54,7 @@ class RetryClient
         };
     } // end createRetryHandler
 
-    protected function isConnectError(RequestException $exception = null)
+    protected function isConnectError(RequestException|ConnectException $exception = null)
     {
         return $exception instanceof ConnectException;
     } // end isConnectError

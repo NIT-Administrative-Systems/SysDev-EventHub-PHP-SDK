@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Support for PHP 7.4 and 8.0 has been dropped. Please use v2.0.0 if you need to use this with an older version of PHP.
 
+### Fixed
+- Fixed an exception in the `RetryClient` that prevented it from dealing with `ConnectException`s.
+
 ## v2.0.0
 There are **no breaking changes** to the library, but the minimum PHP version is now 7.4.
 
