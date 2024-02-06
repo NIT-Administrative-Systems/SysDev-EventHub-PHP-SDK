@@ -13,50 +13,49 @@ use GuzzleHttp\Psr7\Response as Psr7Response;
 class RetryClient
 {
     const MAX_RETRIES = 3;
-    protected $client;
+    protected Client $client;
 
-    public static function make()
+    public static function make(): Client
     {
         $factory = new self();
 
         return $factory->getClient();
-    } // end make
+    }
 
     public function __construct()
     {
         $this->client = $this->createHttpClient();
-    } // end __construct
+    }
 
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->client;
-    } // end getClient
+    }
 
-    protected function createHttpClient()
+    protected function createHttpClient(): Client
     {
         $stack = HandlerStack::create(new CurlHandler());
         $stack->push(\GuzzleHttp\Middleware::retry($this->createRetryHandler()));
-        $client = new Client([
+
+        return new Client([
             'handler' => $stack,
         ]);
+    }
 
-        return $client;
-    } // end createHttpClient
-
-    protected function createRetryHandler()
+    protected function createRetryHandler(): callable
     {
-        return function ($retries, Psr7Request $request, Psr7Response $response = null, RequestException|ConnectException $exception = null) {
+        return function (int $retries, Psr7Request $request, Psr7Response $response = null, RequestException|ConnectException $exception = null) {
             if ($retries >= self::MAX_RETRIES) {
                 return false;
             }
 
             return $this->isConnectError($exception);
         };
-    } // end createRetryHandler
+    }
 
-    protected function isConnectError(RequestException|ConnectException $exception = null)
+    protected function isConnectError(RequestException|ConnectException $exception = null): bool
     {
         return $exception instanceof ConnectException;
-    } // end isConnectError
+    }
 
-} // end RetryClient
+}

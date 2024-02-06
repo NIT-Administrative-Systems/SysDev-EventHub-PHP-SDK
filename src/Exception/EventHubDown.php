@@ -6,5 +6,5 @@ use Exception;
 
 class EventHubDown extends Exception
 {
-
-} // end EventHubDown
+    //
+}

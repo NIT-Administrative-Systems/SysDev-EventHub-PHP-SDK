@@ -15,7 +15,7 @@ class Queue extends EventHubBase
         $params = ($duration === null ? [] : ['duration' => $duration]);
 
         return $this->call('get', '/v1/event-hub/queue', $params);
-    } // end listAll
+    }
 
     /**
      * Retrieve information about a specific queue.
@@ -29,7 +29,7 @@ class Queue extends EventHubBase
         $params = ($duration === null ? [] : ['duration' => $duration]);
 
         return $this->call('get', vsprintf('/v1/event-hub/queue/%s', [$topic_name]), $params);
-    } // end getInfo
+    }
 
     /**
      * Clear any messages in a queue.
@@ -40,7 +40,7 @@ class Queue extends EventHubBase
     public function clearAllMessages(string $topic_name): bool
     {
         return $this->call('delete', vsprintf('/v1/event-hub/queue/%s', [$topic_name]));
-    } // end clearAllMessages
+    }
 
     /**
      * Update information about this queue.
@@ -54,7 +54,7 @@ class Queue extends EventHubBase
         $params = sizeof($params) === 0 ? '{}' : json_encode($params);
 
         return $this->call('patch', vsprintf('/v1/event-hub/queue/%s', [$topic_name]), [], $params);
-    } // end configure
+    }
 
     /**
      * Handy method for submitting a PHP assoc array as a JSON message
@@ -66,7 +66,7 @@ class Queue extends EventHubBase
     public function sendTestJsonMessage(string $topic_name, array $message) : string
     {
         return $this->sendTestMessage($topic_name, json_encode($message), 'application/json');
-    } // end sendTestJsonMessage
+    }
 
     /**
      * Posts a message to the queue (mostly intended for testing purposes).
@@ -79,6 +79,5 @@ class Queue extends EventHubBase
     public function sendTestMessage(string $topic_name, string $message, string $content_type): string
     {
         return $this->call('post', vsprintf('/v1/event-hub/queue/%s', [$topic_name]), [], $message, ['Content-Type' => $content_type]);
-    } // end sendTestMessage
-
-} // end Queue
+    }
+}

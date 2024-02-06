@@ -18,7 +18,7 @@ class DeadLetterQueue extends EventHubBase
         $params = ($duration === null ? [] : ['duration' => $duration]);
 
         return $this->call('get', vsprintf('/v1/event-hub/dlq/%s', [$topic_name]), $params);
-    } // end getInfo
+    }
 
     /**
      * Get the oldest message in the dead-letter queue
@@ -40,7 +40,7 @@ class DeadLetterQueue extends EventHubBase
         }
 
         return $message;
-    } // end getOldest
+    }
 
     /**
      * Moves a message to the DLQ (dead letter queue) for the specified queue.
@@ -53,7 +53,7 @@ class DeadLetterQueue extends EventHubBase
     public function moveToDLQ(string $source_topic_name,  string $message_id, string $destination_topic_name): bool
     {
         return $this->call('post', vsprintf('/v1/event-hub/queue/%s/message/%s/dlq/%s', [$source_topic_name, $message_id, $destination_topic_name]));
-    } // end moveToDLQ
+    }
 
     /**
      * Moves a message out of the DLQ (dead letter queue) to the specified queue.
@@ -66,6 +66,5 @@ class DeadLetterQueue extends EventHubBase
     public function moveFromDLQ(string $source_topic_name,  string $message_id, string $destination_topic_name): bool
     {
         return $this->call('post', vsprintf('/v1/event-hub/dlq/%s/message/%s/queue/%s', [$source_topic_name, $message_id, $destination_topic_name]));
-    } // end moveFromDLQ
-
-} // end DeadLetterQueue
+    }
+}

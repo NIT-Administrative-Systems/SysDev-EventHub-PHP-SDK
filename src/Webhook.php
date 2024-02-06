@@ -12,7 +12,7 @@ class Webhook extends EventHubBase
     public function listAll(): array
     {
         return $this->call('get', '/v1/event-hub/webhook');
-    } // end listAll
+    }
 
     /**
      * Retrieve information about a webhook
@@ -23,7 +23,7 @@ class Webhook extends EventHubBase
     public function getInfo(string $topic_name): array
     {
         return $this->call('get', vsprintf('/v1/event-hub/webhook/%s', [$topic_name]));
-    } // end getInfo
+    }
 
     /**
      * Deletes a webhook
@@ -34,7 +34,7 @@ class Webhook extends EventHubBase
     public function delete(string $topic_name): bool
     {
         return $this->call('delete', vsprintf('/v1/event-hub/webhook/%s', [$topic_name]));
-    } // end delete
+    }
 
     /**
      * Register a new webhook
@@ -58,7 +58,7 @@ class Webhook extends EventHubBase
     public function updateConfig(string $topic_name, array $config): array
     {
         return $this->call('patch', vsprintf('/v1/event-hub/webhook/%s', [$topic_name]), [], json_encode($config));
-    } // end updateConfig
+    }
 
     /**
      * Sends an update w/ active = false to pause the webhook.
@@ -69,7 +69,7 @@ class Webhook extends EventHubBase
     public function pause(string $topic_name): array
     {
         return $this->updateConfig($topic_name, ['active' => false]);
-    } // end pause
+    }
 
     /**
      * Sends an update w/ active = true to un-pause the webhook.
@@ -80,6 +80,5 @@ class Webhook extends EventHubBase
     public function unpause(string $topic_name): array
     {
         return $this->updateConfig($topic_name, ['active' => true]);
-    } // end unpause
-
-} // end Webhook
+    }
+}

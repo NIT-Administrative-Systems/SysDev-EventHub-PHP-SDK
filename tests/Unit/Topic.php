@@ -6,7 +6,7 @@ use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
 
 final class Topic extends SdkBaseTestCase
 {
-    protected $test_class = \Northwestern\SysDev\SOA\EventHub\Topic::class;
+    protected ?string $test_class = \Northwestern\SysDev\SOA\EventHub\Topic::class;
 
     public function test_list_all(): void
     {
@@ -21,7 +21,7 @@ final class Topic extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(200, $response));
         $queues = $this->api->listAll();
         $this->assertEquals('etsysdev.test.queue.name', $queues[0]['topicName']);
-    } // end test_list_all
+    }
 
     public function test_get_info(): void
     {
@@ -36,7 +36,7 @@ final class Topic extends SdkBaseTestCase
         $this->api->setHttpClient($this->mockHttpResponse(200, $response));
         $queue = $this->api->getInfo('etsysdev.test.queue.name');
         $this->assertEquals('etsysdev.test.queue.name', $queue['topicName']);
-    } // end test_get_info
+    }
 
     public function test_configure(): void
     {
@@ -54,7 +54,7 @@ final class Topic extends SdkBaseTestCase
 
         $message_id = $this->api->writeJsonMessage('etsysdev.test.queue.name', ['testing' => 'messaging', 'is' => 'fun']);
         $this->assertEquals($response_id, $message_id);
-    } // end test_write_json_message
+    }
 
     public function test_write_message(): void
     {
@@ -63,6 +63,5 @@ final class Topic extends SdkBaseTestCase
 
         $message_id = $this->api->writeMessage('etsysdev.test.queue.name', '{"foo": "bar"}', 'application/json');
         $this->assertEquals($response_id, $message_id);
-    } // end test_write_message
-
-} // end Topic
+    }
+}

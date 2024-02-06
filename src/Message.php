@@ -26,7 +26,7 @@ class Message extends EventHubBase
         }
 
         return $message;
-    } // end readOldest
+    }
 
     /**
      * Acknowledges (Deletes) the oldest message from a queue
@@ -37,7 +37,7 @@ class Message extends EventHubBase
     public function acknowledgeOldest(string $topic_name): bool
     {
         return $this->call('delete', vsprintf('/v1/event-hub/queue/%s/message', [$topic_name]));
-    } // end acknowledgeOldest
+    }
 
     /**
      * Retrieve a specific message from a queue
@@ -50,7 +50,7 @@ class Message extends EventHubBase
     {
         // @TODO doesn't work, returns a NYI string instead of a msg
         return $this->call('get', vsprintf('/v1/event-hub/queue/%s/message/%s', [$topic_name, $message_id]));
-    } // end read
+    }
 
     /**
      * Acknowledge (Delete) a message or group of message from a queue
@@ -65,7 +65,7 @@ class Message extends EventHubBase
         $params = ($fast_forward === null ? [] : ['fast_forward' => $this->stringifyBool($fast_forward)]);
 
         return $this->call('delete', vsprintf('/v1/event-hub/queue/%s/message/%s', [$topic_name, $message_id]), $params);
-    } // end acknowledge
+    }
 
     /**
      * Allows you to move a message from a queue you own to another queue/topic you own. This could be done via a get and subsequent write call. It also allows for the moving of a message to the queues corresponding DLQ (dead letter queue), or to redeliver the message to the same queue but with a delivery delay.
@@ -90,6 +90,5 @@ class Message extends EventHubBase
         ]);
 
         return $this->call('post', $url, $params);
-    } // end move
-
-} // end Message
+    }
+}

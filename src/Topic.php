@@ -15,7 +15,7 @@ class Topic extends EventHubBase
         $params = ($duration === null ? [] : ['duration' => $duration]);
 
         return $this->call('get', '/v1/event-hub/topic', $params);
-    } // end listAll
+    }
 
     /**
      * Retrieve information about a specific topic
@@ -29,7 +29,7 @@ class Topic extends EventHubBase
         $params = ($duration === null ? [] : ['duration' => $duration]);
 
         return $this->call('get', vsprintf('/v1/event-hub/topic/%s', [$topic_name]), $params);
-    } // end getInfo
+    }
 
     /**
      * Update topic information
@@ -43,7 +43,7 @@ class Topic extends EventHubBase
         $params = sizeof($params) === 0 ? '{}' : json_encode($params);
 
         return $this->call('patch', vsprintf('/v1/event-hub/topic/%s', [$topic_name]), [], $params);
-    } // end configure
+    }
 
     /**
      * Handy method for submitting a PHP assoc array as a JSON message
@@ -55,7 +55,7 @@ class Topic extends EventHubBase
     public function writeJsonMessage(string $topic_name, array $message): string
     {
         return $this->writeMessage($topic_name, json_encode($message), 'application/json');
-    } // end writeJsonMessage
+    }
 
     /**
      * Write a message to a topic
@@ -68,6 +68,5 @@ class Topic extends EventHubBase
     public function writeMessage(string $topic_name, string $message, string $content_type): string
     {
         return $this->call('post', vsprintf('/v1/event-hub/topic/%s', [$topic_name]), [], $message, ['Content-Type' => $content_type]);
-    } // end writeMessage
-
-} // end Topic
+    }
+}
