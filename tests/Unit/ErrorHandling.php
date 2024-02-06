@@ -2,9 +2,9 @@
 
 namespace Northwestern\SysDev\SOA\EventHub\Tests\Unit;
 
-use Northwestern\SysDev\SOA\EventHub\Tests\TestCase;
+use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
 
-final class ErrorHandling extends TestCase
+final class ErrorHandling extends SdkBaseTestCase
 {
     // Doesn't matter, they all use EventHubBase, which is what we're testing.
     protected $test_class = \Northwestern\SysDev\SOA\EventHub\Topic::class;

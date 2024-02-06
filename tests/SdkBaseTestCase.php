@@ -10,7 +10,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Exception\RequestException;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
-abstract class TestCase extends BaseTestCase
+abstract class SdkBaseTestCase extends BaseTestCase
 {
     protected $api;
     protected $test_class;

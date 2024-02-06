@@ -2,9 +2,9 @@
 
 namespace Northwestern\SysDev\SOA\EventHub\Tests\Unit;
 
-use Northwestern\SysDev\SOA\EventHub\Tests\TestCase;
+use Northwestern\SysDev\SOA\EventHub\Tests\SdkBaseTestCase;
 
-final class Webhook extends TestCase
+final class Webhook extends SdkBaseTestCase
 {
     protected $test_class = \Northwestern\SysDev\SOA\EventHub\Webhook::class;
 
